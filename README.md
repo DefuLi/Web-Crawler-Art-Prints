@@ -48,7 +48,32 @@
             break
 ```
 
-## 3 所用环境
+## 3 保存爬取图片
+file_dir是自定义的保存图片的路径，爬取到每一张图片后将其写入到文件中。<br>
+<p align="center">
+  <img src="https://github.com/DefuLi/Web-Crawler-Art-Prints/blob/master/img3.png" width="1000" height="500">
+  <p align="center">
+    <em>爬取到的图片</em>
+  </p>
+</p>
+<br>
+
+```python
+    for item_url in img_url:
+        try:
+            r = requests.get(item_url, stream=True)
+        except:
+            break
+        img_name = index
+        index += 1
+
+        with open(file_dir + str(img_name) + '.jpg', 'wb') as f:
+            for chunk in r.iter_content(chunk_size=128):
+                f.write(chunk)
+        print('Save', file_dir + str(img_name) + '.jpg')
+```
+
+## 4 所用环境
 本次使用的是BeautifulSoup、requests两个关键库，BeautifulSoup库提供了解析网页的功能，requests库提供了根据url链接访问并获取html对象的功能。<br>
 
 ```python
@@ -61,3 +86,5 @@ requests==2.22.0
 soupsieve==1.9.5
 urllib3==1.25.7
 ```
+
+注：本程序采用的循环递归的方式进行爬虫，没有设置递归的出口，所以如果不想爬虫了，手动中断程序即可。
