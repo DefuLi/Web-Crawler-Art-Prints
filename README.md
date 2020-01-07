@@ -50,8 +50,9 @@
 
 ## 3 所用环境
 本次使用的是BeautifulSoup、requests两个关键库，BeautifulSoup库提供了解析网页的功能，requests库提供了根据url链接访问并获取html对象的功能。<br>
-requirement.txt
+
 ```python
+# requirement.txt
 beautifulsoup4==4.8.2
 certifi==2019.11.28
 chardet==3.0.4
